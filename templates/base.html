@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Nomnivore Nutrition{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}
+    <!-- Additional page-specific CSS -->
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="floating-navbar">
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="menu" id="menu">
+                <button class="close-button" id="close-button">&times;</button>
+                <ul class="nav-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="{% url 'blog-home' %}">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Nutritionist Blog. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+<script>
+    
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+        const closeButton = document.getElementById('close-button');
+
+        // Open menu
+        hamburger.addEventListener('click', () => {
+            menu.classList.add('open');
+        });
+
+        // Close menu
+        closeButton.addEventListener('click', () => {
+            menu.classList.remove('open');
+        });
+    });
+</script>
+</html>

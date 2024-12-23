@@ -1,0 +1,333 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    
+}
+
+/* Floating Navbar */
+.floating-navbar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Hamburger Button */
+.hamburger {
+    background: hsla(267, 59%, 69%, 0.621);
+    border: none;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border-radius: 15px; /* Rounded edges */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hamburger span {
+    width: 30px;
+    height: 4px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+}
+
+/* Menu (Initially Hidden) */
+.menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background: hsl(267, 59%, 69%);;
+    overflow: hidden;
+    transition: width 0.3s ease;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center links horizontally */
+    justify-content: center; /* Center links vertically */
+}
+
+.menu.open {
+    width: 300px; /* Full right side of the screen */
+}
+
+/* Close Button */
+.close-button {
+    position: absolute; /* Keep it independent of menu links */
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Space between menu items */
+    text-align: center;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem; /* Make links larger for emphasis */
+}
+
+.nav-links li a:hover {
+    text-decoration: underline;
+}
+
+
+/* Hero Section */
+.hero {
+    position: relative; /* Allow it to participate in normal document flow */
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Hide excess parts of the background image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+}
+
+.hero h1, .hero p, .hero .btn {
+    position: relative;
+    z-index: 2; /* Ensures text and buttons appear above the background */
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero .btn {
+    background: hsl(267, 60%, 69%);;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.hero .btn:hover {
+    background: hsl(267, 34%, 56%);;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%; /* Make the background larger for scrolling */
+    background-image: url('../images/food-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Ensure it stays behind the content */
+    transform: translateY(var(--parallax-offset, 0));
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1; /* Places the overlay above the background */
+}
+
+/* About Section */
+.about {
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.about-content img {
+    width: 150px; /* Adjust size as needed */
+    height: 150px;
+    max-width: 100%; /* Ensure the image does not exceed its container */
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Ensure the image fills the circle */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+.about-content p {
+    max-width: 600px; /* Limit text width for readability */
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.about, .blog {
+    padding: 2rem 0;
+}
+
+.about .container, .blog .container {
+    text-align: center;
+}
+
+.about h2, .blog h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+/* Blog Header Section */
+.blog-header {
+    position: relative;
+    padding: 14rem 1rem; /* Space around the content */
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/images/food-hero.jpg') no-repeat center center/cover;
+    color: #fff;
+}
+
+.blog-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.blog-header p {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+/* Blog Section */
+.blog {
+    padding: 2rem 0;
+    background: #f9f9f9;
+}
+
+.blog h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Post List */
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Space between posts */
+}
+
+/* Post Card */
+.post-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Post Image */
+.post-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Post Content */
+.post-content {
+    padding: 1.5rem;
+}
+
+.post-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: hsl(267, 60%, 50%);
+    font-weight: bold;
+}
+
+.post-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.post-title a:hover {
+    text-decoration: underline;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.post-excerpt {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.btn-read-more {
+    display: inline-block;
+    color: #fff;
+    background: hsl(267, 60%, 69%);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn-read-more:hover {
+    background: hsl(267, 34%, 56%);
+}
+
+/* Footer */
+footer {
+    background: hsl(267, 60%, 69%);
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Blog - Nomnivore Nutrition
+{% endblock %}
+
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="blog-header">
+    <div class="container">
+        <h1>Nomnivore Nutrition Blog</h1>
+        <p>Stay updated with the latest in health, wellness, and nutrition.</p>
+    </div>
+</section>
+
+<section class="blog">
+    <div class="container">
+        <div class="post-list">
+            {% for post in posts %}
+            <article class="post-card">
+                <!-- <div class="post-image">
+                    <img src="{% static 'images/default-blog.jpg' %}" alt="Post image">
+                </div> -->
+                <div class="post-content">
+                    <h3 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                    <p class="post-meta">by {{ post.author }} on {{ post.created_at|date:"M d, Y" }}</p>
+                    <p class="post-excerpt">{{ post.content|truncatewords:20 }}</p>
+                    <a href="{{ post.get_absolute_url }}" class="btn btn-read-more">Read More</a>
+                </div>
+            </article>
+            {% empty %}
+            <p>No posts available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
